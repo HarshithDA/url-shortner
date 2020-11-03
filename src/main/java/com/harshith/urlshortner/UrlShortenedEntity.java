@@ -26,6 +26,6 @@ public class UrlShortenedEntity implements Serializable {
   private Long urlId;
 
   @Column(name = "actual_url")
-  private String actualUrl;
+  private String originalUrl;
 
 }

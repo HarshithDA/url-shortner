@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UrlShortenedRepository extends JpaRepository<UrlShortenedEntity, Long> {
 
-
+  UrlShortenedEntity findByOriginalUrl(String originalUrl);
 
 }
