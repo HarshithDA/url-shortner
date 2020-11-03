@@ -25,7 +25,20 @@ public class UrlShortnerFactory {
     return urlShortnerService.getShortenedUrl(originalUrl);
   }
 
-  public String getOriginalUrl(String shortenedUrl) throws UrlShortnerServiceException {
+
+  public String getShortenedUrlByUniqueDate(String originalUrl) throws UrlShortnerServiceException {
+
+    if (originalUrl == null || originalUrl.isBlank()) {
+      throw new UrlShortnerServiceException(
+          "Original URL cannot be null or empty, please provide a valid URL");
+    }
+
+    return urlShortnerService.getShortenedUrlByUniqueDate(originalUrl);
+  }
+
+
+  public UrlShortenResponseView getOriginalUrl(String shortenedUrl)
+      throws UrlShortnerServiceException {
 
     if (shortenedUrl == null || shortenedUrl.isBlank()) {
       throw new UrlShortnerServiceException(
@@ -35,6 +48,7 @@ public class UrlShortnerFactory {
     return urlShortnerService.getOriginalUrl(shortenedUrl);
   }
 
+
   public Response redirectToOriginalUrl(String shortenedUrl)
       throws UrlShortnerServiceException, URISyntaxException {
 
@@ -43,7 +57,7 @@ public class UrlShortnerFactory {
           "Shortened URL cannot be null or empty, please provide a valid Short URL");
     }
 
-    String originalUrl = urlShortnerService.getOriginalUrl(shortenedUrl);
+    String originalUrl = urlShortnerService.getOriginalUrl(shortenedUrl).getOriginalUrl();
 
     URI uri = new URI(originalUrl);
 
@@ -62,7 +76,7 @@ public class UrlShortnerFactory {
           "Shortened URL cannot be null or empty, please provide a valid Short URL");
     }
 
-    String originalUrl = urlShortnerService.getOriginalUrl(shortenedUrl);
+    String originalUrl = urlShortnerService.getOriginalUrl(shortenedUrl).getOriginalUrl();
 
     // httpServletResponse.setHeader("Location", originalUrl);
     // httpServletResponse.setStatus(302);
