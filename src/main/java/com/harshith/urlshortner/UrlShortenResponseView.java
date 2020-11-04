@@ -1,5 +1,6 @@
 package com.harshith.urlshortner;
 
+import java.time.Instant;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
@@ -18,5 +19,6 @@ public class UrlShortenResponseView {
 
   private Long uniqueIdByDate;
 
+  private Instant createdDate;
 
 }

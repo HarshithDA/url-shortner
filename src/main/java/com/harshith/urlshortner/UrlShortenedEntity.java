@@ -1,6 +1,7 @@
 package com.harshith.urlshortner;
 
 import java.io.Serializable;
+import java.time.Instant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,5 +31,8 @@ public class UrlShortenedEntity implements Serializable {
 
   @Column(name = "unique_id_by_date")
   private Long uniqueIdByDate;
+
+  @Column(name = "created_date")
+  private Instant createdDate;
 
 }

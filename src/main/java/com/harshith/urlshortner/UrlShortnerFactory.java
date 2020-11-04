@@ -2,12 +2,15 @@ package com.harshith.urlshortner;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
+import com.harshith.urlshortner.enums.SortByColumnEnum;
+import com.harshith.urlshortner.enums.SortOrderEnum;
 
 @Service
 public class UrlShortnerFactory {
@@ -46,6 +49,12 @@ public class UrlShortnerFactory {
     }
 
     return urlShortnerService.getOriginalUrl(shortenedUrl);
+  }
+
+
+  public List<UrlShortenResponseView> getOriginalUrlList(int pageNumber, int pageSize,
+      SortByColumnEnum sortBy, SortOrderEnum sortByOrder) {
+    return urlShortnerService.getOriginalUrlList(pageNumber, pageSize, sortBy, sortByOrder);
   }
 
 

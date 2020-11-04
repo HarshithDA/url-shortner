@@ -1,7 +1,10 @@
 package com.harshith.urlshortner;
 
 import java.net.URISyntaxException;
+import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import com.harshith.urlshortner.enums.SortByColumnEnum;
+import com.harshith.urlshortner.enums.SortOrderEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -55,6 +60,21 @@ public class UrlShortnerResource {
           required = true) String shortenedUrl)
       throws UrlShortnerServiceException {
     return urlShortnerFactory.getOriginalUrl(shortenedUrl);
+  }
+
+
+  @ApiOperation(value = "Fetch the Original URLs list details",
+      response = UrlShortenResponseView.class, responseContainer = "List")
+  @GetMapping(value = "/original-list")
+  public List<UrlShortenResponseView> getOriginalUrlList(
+      @Min(value = 1, message = "page_number must be minimum 1") @RequestParam(
+          value = "page_number", defaultValue = "1") int pageNumber,
+      @Max(value = 100, message = "page_size can be at max 100") @RequestParam(value = "page_size",
+          defaultValue = "20") int pageSize,
+      @RequestParam(value = "sort_by", defaultValue = "CREATED_DATE") SortByColumnEnum sortBy,
+      @RequestParam(value = "sort_by_order", defaultValue = "DESC") SortOrderEnum sortByOrder)
+      throws UrlShortnerServiceException {
+    return urlShortnerFactory.getOriginalUrlList(pageNumber, pageSize, sortBy, sortByOrder);
   }
 
 
