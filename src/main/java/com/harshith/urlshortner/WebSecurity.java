@@ -1,6 +1,7 @@
 package com.harshith.urlshortner;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,6 +9,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 public class WebSecurity extends WebSecurityConfigurerAdapter {
+
+  @Value("${application.basic.auth.user}")
+  String basicAuthUser;
+
+  @Value("${application.basic.auth.password}")
+  String basicAuthPassword;
+
+
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable().authorizeRequests().anyRequest().authenticated().and().httpBasic();
@@ -15,6 +24,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    auth.inMemoryAuthentication().withUser("admin").password("{noop}password").roles("USER");
+
+    // {noop} : NoOpPasswordEncoder
+    auth.inMemoryAuthentication().withUser(basicAuthUser).password("{noop}" + basicAuthPassword)
+        .roles("USER");
   }
 }
