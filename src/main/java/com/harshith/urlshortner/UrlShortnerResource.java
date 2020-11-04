@@ -1,5 +1,6 @@
 package com.harshith.urlshortner;
 
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
@@ -7,6 +8,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,7 +82,7 @@ public class UrlShortnerResource {
 
 
   @ApiOperation(value = "Redirect to actual URL with URI Response Approach",
-      response = String.class)
+      response = Response.class)
   @GetMapping(value = "/redirect-response")
   public Response redirectToOriginalUrl(
       @ApiParam("Shortened Url") @RequestParam(value = "shortened_url",
@@ -88,7 +91,8 @@ public class UrlShortnerResource {
     return urlShortnerFactory.redirectToOriginalUrl(shortenedUrl);
   }
 
-  @ApiOperation(value = "Redirect to actual URL with Servlet Approach", response = String.class)
+  @ApiOperation(value = "Redirect to actual URL with Servlet Approach",
+      response = ModelAndView.class)
   @GetMapping(value = "/redirect-servlet")
   public ModelAndView redirectToOriginalUrlNew(
       @ApiParam("Shortened Url") @RequestParam(value = "shortened_url",
@@ -97,5 +101,16 @@ public class UrlShortnerResource {
       throws UrlShortnerServiceException, URISyntaxException {
     return urlShortnerFactory.redirectToOriginalUrlNew(shortenedUrl, httpServletResponse);
   }
+
+  @ApiOperation(value = "Redirect to actual URL")
+  @GetMapping(value = "/redirect-responseentity")
+  public ResponseEntity<Void> getAndRedirect(
+      @ApiParam("Shortened Url") @RequestParam(value = "shortened_url",
+          required = true) String shortenedUrl)
+      throws UrlShortnerServiceException {
+    String url = urlShortnerFactory.getOriginalUrl(shortenedUrl).getOriginalUrl();
+    return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(url)).build();
+  }
+
 
 }

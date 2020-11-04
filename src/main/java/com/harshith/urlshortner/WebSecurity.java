@@ -38,6 +38,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
   @Bean
   BCryptPasswordEncoder encoder() {
+    // strong hashing function to encode the password
     return new BCryptPasswordEncoder();
   }
 
