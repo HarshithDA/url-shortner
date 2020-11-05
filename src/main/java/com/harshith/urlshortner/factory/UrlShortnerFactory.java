@@ -106,6 +106,8 @@ public class UrlShortnerFactory {
 
       return Response.status(Status.MOVED_PERMANENTLY).location(uri).build();
       // return Response.temporaryRedirect(uri).build();
+    } catch (UrlShortnerServiceException e) {
+      throw e;
     } catch (Exception e) {
       LOGGER.error(e.getMessage(), e);
       throw new UrlShortnerServiceException(
@@ -129,6 +131,8 @@ public class UrlShortnerFactory {
       // httpServletResponse.setStatus(302);
 
       return new ModelAndView("redirect:" + originalUrl);
+    } catch (UrlShortnerServiceException e) {
+      throw e;
     } catch (Exception e) {
       LOGGER.error(e.getMessage(), e);
       throw new UrlShortnerServiceException(

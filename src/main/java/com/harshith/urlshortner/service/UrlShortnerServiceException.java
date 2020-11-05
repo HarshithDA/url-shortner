@@ -1,5 +1,8 @@
 package com.harshith.urlshortner.service;
 
+import lombok.Getter;
+
+@Getter
 public class UrlShortnerServiceException extends Exception {
 
   private final int errorCode;
