@@ -1,4 +1,4 @@
-package com.harshith.urlshortner;
+package com.harshith.urlshortner.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

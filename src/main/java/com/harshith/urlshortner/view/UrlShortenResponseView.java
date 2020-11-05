@@ -1,4 +1,4 @@
-package com.harshith.urlshortner;
+package com.harshith.urlshortner.view;
 
 import java.time.Instant;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;

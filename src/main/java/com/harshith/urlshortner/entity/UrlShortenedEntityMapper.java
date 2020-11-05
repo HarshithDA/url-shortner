@@ -1,8 +1,9 @@
-package com.harshith.urlshortner;
+package com.harshith.urlshortner.entity;
 
 import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
+import com.harshith.urlshortner.view.UrlShortenResponseView;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 

@@ -1,4 +1,4 @@
-package com.harshith.urlshortner;
+package com.harshith.urlshortner.entity;
 
 import java.io.Serializable;
 import java.time.Instant;

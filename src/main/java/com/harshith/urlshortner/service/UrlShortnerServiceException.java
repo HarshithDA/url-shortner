@@ -1,4 +1,4 @@
-package com.harshith.urlshortner;
+package com.harshith.urlshortner.service;
 
 public class UrlShortnerServiceException extends Exception {
 

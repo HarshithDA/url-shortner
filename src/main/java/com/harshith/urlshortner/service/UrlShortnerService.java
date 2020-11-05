@@ -1,4 +1,4 @@
-package com.harshith.urlshortner;
+package com.harshith.urlshortner.service;
 
 import java.time.Instant;
 import java.util.Date;
@@ -11,8 +11,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import com.harshith.urlshortner.entity.UrlShortenedEntity;
+import com.harshith.urlshortner.entity.UrlShortenedEntityMapper;
 import com.harshith.urlshortner.enums.SortByColumnEnum;
 import com.harshith.urlshortner.enums.SortOrderEnum;
+import com.harshith.urlshortner.view.UrlShortenResponseView;
 
 @Service
 public class UrlShortnerService {

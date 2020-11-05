@@ -1,4 +1,4 @@
-package com.harshith.urlshortner;
+package com.harshith.urlshortner.config;
 
 import static com.google.common.collect.Lists.newArrayList;
 import java.util.ArrayList;
