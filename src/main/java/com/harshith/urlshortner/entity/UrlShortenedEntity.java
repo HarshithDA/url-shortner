@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "T_URL_SHORTENED")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class UrlShortenedEntity implements Serializable {
 
   private static final long serialVersionUID = 1159536781632649314L;
