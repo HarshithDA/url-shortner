@@ -48,6 +48,24 @@ public class UrlShortnerFactory {
   }
 
 
+  public String getShortenedUrlV2(String originalUrl) throws UrlShortnerServiceException {
+    try {
+      if (originalUrl == null || originalUrl.isBlank()) {
+        throw new UrlShortnerServiceException(
+            "Original URL cannot be null or empty, please provide a valid URL");
+      }
+
+      return urlShortnerService.getShortenedUrlV2(originalUrl);
+    } catch (UrlShortnerServiceException e) {
+      throw e;
+    } catch (Exception e) {
+      LOGGER.error(e.getMessage(), e);
+      throw new UrlShortnerServiceException(
+          "Failed to Shorten URL! Unexpected Application Error Occured!", 101);
+    }
+  }
+
+
   public String getShortenedUrlByUniqueDate(String originalUrl) throws UrlShortnerServiceException {
     try {
       if (originalUrl == null || originalUrl.isBlank()) {
@@ -85,6 +103,25 @@ public class UrlShortnerFactory {
   }
 
 
+  public UrlShortenResponseView getOriginalUrlV2(String shortenedUrl)
+      throws UrlShortnerServiceException {
+    try {
+      if (shortenedUrl == null || shortenedUrl.isBlank()) {
+        throw new UrlShortnerServiceException(
+            "Shortened URL cannot be null or empty, please provide a valid Short URL");
+      }
+
+      return urlShortnerService.getOriginalUrlV2(shortenedUrl);
+    } catch (UrlShortnerServiceException e) {
+      throw e;
+    } catch (Exception e) {
+      LOGGER.error(e.getMessage(), e);
+      throw new UrlShortnerServiceException(
+          "Failed to Fetch Original! Unexpected Application Error Occured!", 103);
+    }
+  }
+
+
   public List<UrlShortenResponseView> getOriginalUrlList(int pageNumber, int pageSize,
       SortByColumnEnum sortBy, SortOrderEnum sortByOrder) throws UrlShortnerServiceException {
     try {
@@ -106,6 +143,30 @@ public class UrlShortnerFactory {
       }
 
       String originalUrl = urlShortnerService.getOriginalUrl(shortenedUrl).getOriginalUrl();
+
+      URI uri = new URI(originalUrl);
+
+      return Response.status(Status.MOVED_PERMANENTLY).location(uri).build();
+      // return Response.temporaryRedirect(uri).build();
+    } catch (UrlShortnerServiceException e) {
+      throw e;
+    } catch (Exception e) {
+      LOGGER.error(e.getMessage(), e);
+      throw new UrlShortnerServiceException(
+          "Failed to Redirect to Original URL! Unexpected Application Error Occured!", 105);
+    }
+  }
+
+
+  public Response redirectToOriginalUrlV2(String shortenedUrl)
+      throws UrlShortnerServiceException, URISyntaxException {
+    try {
+      if (shortenedUrl == null || shortenedUrl.isBlank()) {
+        throw new UrlShortnerServiceException(
+            "Shortened URL cannot be null or empty, please provide a valid Short URL");
+      }
+
+      String originalUrl = urlShortnerService.getOriginalUrlV2(shortenedUrl).getOriginalUrl();
 
       URI uri = new URI(originalUrl);
 

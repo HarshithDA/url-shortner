@@ -43,6 +43,17 @@ public class UrlShortenerStatsResource {
   }
 
 
+  @ApiOperation(value = "Fetch the Original URL for the Short URL",
+      response = UrlShortenResponseView.class)
+  @GetMapping(value = "/original-v2")
+  public UrlShortenResponseView getOriginalUrlV2(
+      @ApiParam("Shortened Url") @RequestParam(value = "shortened_url",
+          required = true) String shortenedUrl)
+      throws UrlShortnerServiceException {
+    return urlShortnerFactory.getOriginalUrlV2(shortenedUrl);
+  }
+
+
   @ApiOperation(value = "Fetch the Original URLs list details",
       response = UrlShortenResponseView.class, responseContainer = "List")
   @GetMapping(value = "/original-list")

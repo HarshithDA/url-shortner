@@ -46,6 +46,16 @@ public class UrlRedirectResource {
     return urlShortnerFactory.redirectToOriginalUrl(shortenedUrl);
   }
 
+  @ApiOperation(value = "Redirect to Original URL with URI Response Approach",
+      response = Response.class)
+  @GetMapping(value = "/response-v2")
+  public Response redirectToOriginalUrlResponseV2(
+      @ApiParam("Shortened Url") @RequestParam(value = "shortened_url",
+          required = true) String shortenedUrl)
+      throws UrlShortnerServiceException, URISyntaxException {
+    return urlShortnerFactory.redirectToOriginalUrlV2(shortenedUrl);
+  }
+
   @ApiOperation(value = "Redirect to Original URL with Servlet Approach",
       response = ModelAndView.class)
   @GetMapping(value = "/servlet")
