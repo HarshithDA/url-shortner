@@ -1,14 +1,18 @@
 package com.harshith.urlshortner.resource;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -61,6 +65,39 @@ public class UrlRedirectResource {
       throws UrlShortnerServiceException {
     String url = urlShortnerFactory.getOriginalUrl(shortenedUrl).getOriginalUrl();
     return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(url)).build();
+  }
+
+
+  @ApiOperation(value = "Redirect to Original URL with URI Response Approach")
+  @GetMapping(value = "/response-temp")
+  public ResponseBuilder redirectToOriginalUrlResponseTemp(
+      @ApiParam("Shortened Url") @RequestParam(value = "shortened_url",
+          required = true) String shortenedUrl)
+      throws UrlShortnerServiceException, URISyntaxException {
+    URI uri = new URI(urlShortnerFactory.getOriginalUrl(shortenedUrl).getOriginalUrl());
+    return Response.temporaryRedirect(uri);
+  }
+
+  @GetMapping("/response-entity-object")
+  ResponseEntity<Object> handleFoo(HttpServletResponse response,
+      @ApiParam("Shortened Url") @RequestParam(value = "shortened_url",
+          required = true) String shortenedUrl)
+      throws IOException, UrlShortnerServiceException {
+    // response.sendRedirect(urlShortnerFactory.getOriginalUrl(shortenedUrl).getOriginalUrl());
+    HttpHeaders headers = new HttpHeaders();
+    headers
+        .setLocation(URI.create(urlShortnerFactory.getOriginalUrl(shortenedUrl).getOriginalUrl()));
+    return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
+  }
+
+  @RequestMapping(value = "/response-head", method = RequestMethod.GET)
+  public void method(HttpServletResponse httpServletResponse,
+      @ApiParam("Shortened Url") @RequestParam(value = "shortened_url",
+          required = true) String shortenedUrl)
+      throws UrlShortnerServiceException {
+    httpServletResponse.setHeader("Location",
+        urlShortnerFactory.getOriginalUrl(shortenedUrl).getOriginalUrl());
+    httpServletResponse.setStatus(302);
   }
 
 
