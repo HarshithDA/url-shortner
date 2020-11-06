@@ -13,6 +13,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entity class mapped to the DB table T_URL_SHORTENED
+ *
+ */
 @Entity
 @Table(name = "T_URL_SHORTENED")
 @Data

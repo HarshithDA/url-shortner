@@ -2,6 +2,10 @@ package com.harshith.urlshortner.service;
 
 import lombok.Getter;
 
+/**
+ * Application level Exception to handle custom errors as well as Wrapper exception
+ *
+ */
 @Getter
 public class UrlShortnerServiceException extends Exception {
 

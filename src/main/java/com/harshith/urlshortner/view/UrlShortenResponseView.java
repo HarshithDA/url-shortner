@@ -7,6 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * View to be presented to users which maps with UrlShortenedEntity
+ *
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -11,6 +11,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Security config for the service. Here there a Basic auth setup.
+ *
+ */
 @Configuration
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 

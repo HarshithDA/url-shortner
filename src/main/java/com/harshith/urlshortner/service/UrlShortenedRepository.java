@@ -5,6 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import com.harshith.urlshortner.entity.UrlShortenedEntity;
 
+/**
+ * Repository to handle the DB transactions to UrlShortenedEntity
+ *
+ */
 @Repository
 public interface UrlShortenedRepository extends JpaRepository<UrlShortenedEntity, Long> {
 

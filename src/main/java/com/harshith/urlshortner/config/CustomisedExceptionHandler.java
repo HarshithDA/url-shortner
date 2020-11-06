@@ -18,6 +18,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.harshith.urlshortner.service.UrlShortnerServiceException;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Customized Exception handler for presenting the errors. Can override the default error to
+ * customized way throughout application.
+ *
+ */
 @ControllerAdvice
 @Slf4j
 public class CustomisedExceptionHandler extends ResponseEntityExceptionHandler {

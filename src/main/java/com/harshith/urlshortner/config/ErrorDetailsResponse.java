@@ -9,6 +9,11 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Data;
 
+/**
+ * To generate custom error messages and format to be presented (like error message, error code,
+ * status etc)
+ *
+ */
 @XmlRootElement(name = "errors")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 @Data

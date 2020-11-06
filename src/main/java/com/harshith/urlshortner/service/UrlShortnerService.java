@@ -17,6 +17,10 @@ import com.harshith.urlshortner.enums.SortByColumnEnum;
 import com.harshith.urlshortner.enums.SortOrderEnum;
 import com.harshith.urlshortner.view.UrlShortenResponseView;
 
+/**
+ * Handles all the Service layer database related operations for URL Shortened Repository layer
+ *
+ */
 @Service
 public class UrlShortnerService {
 

@@ -17,6 +17,10 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/**
+ * Configurations needed to setup Datasource used for Junit/Mocks.
+ *
+ */
 @Configuration
 @EnableJpaRepositories(basePackages = "com.harshith.urlshortner")
 @PropertySource("application.properties")

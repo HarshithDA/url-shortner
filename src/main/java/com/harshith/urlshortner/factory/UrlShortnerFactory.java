@@ -17,6 +17,11 @@ import com.harshith.urlshortner.service.UrlShortnerService;
 import com.harshith.urlshortner.service.UrlShortnerServiceException;
 import com.harshith.urlshortner.view.UrlShortenResponseView;
 
+/**
+ * Factory layer Facade class for URL Shortner resources to access the functionalities exposed by
+ * URL Shortner service
+ *
+ */
 @Service
 public class UrlShortnerFactory {
 
