@@ -113,26 +113,6 @@ public class UrlShortnerService {
     return urlShortenedEntityMapper.urlShortenedEntityToDto(entity);
   }
 
-
-  public List<UrlShortenResponseView> getOriginalUrlList(int pageNumber, int pageSize,
-      SortByColumnEnum sortBy, SortOrderEnum sortByOrder) {
-    Direction direction = null;
-
-    if (sortByOrder == SortOrderEnum.ASC) {
-      direction = Sort.Direction.ASC;
-    } else {
-      direction = Sort.Direction.DESC;
-    }
-
-    PageRequest pageable =
-        PageRequest.of(pageNumber - 1, pageSize, direction, sortBy.getTableColumn());
-
-    return urlShortenedEntityMapper
-        .urlShortenedEntityListToDtoList(urlShortenedRepository.findAll(pageable).getContent());
-  }
-
-
-
   /**
    * Convert base 62 String to Unique ID using the placeholder characters
    */
@@ -155,5 +135,25 @@ public class UrlShortnerService {
 
     return uniqueId;
   }
+
+
+
+  public List<UrlShortenResponseView> getOriginalUrlList(int pageNumber, int pageSize,
+      SortByColumnEnum sortBy, SortOrderEnum sortByOrder) {
+    Direction direction = null;
+
+    if (sortByOrder == SortOrderEnum.ASC) {
+      direction = Sort.Direction.ASC;
+    } else {
+      direction = Sort.Direction.DESC;
+    }
+
+    PageRequest pageable =
+        PageRequest.of(pageNumber - 1, pageSize, direction, sortBy.getTableColumn());
+
+    return urlShortenedEntityMapper
+        .urlShortenedEntityListToDtoList(urlShortenedRepository.findAll(pageable).getContent());
+  }
+
 
 }

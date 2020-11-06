@@ -1,6 +1,5 @@
 package com.harshith.urlshortner;
 
-import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -47,18 +46,21 @@ class UrlShortnerApplicationTests {
 
   @Test
   public void shortenUrlTestNew() throws UrlShortnerServiceException {
-    String originalUrl = "https://news.google.com/topstories";
+    String originalUrl =
+        "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGRqTVhZU0FtVnVHZ0pKVGlnQVAB?hl=en-IN&gl=IN&ceid=IN%3Aen";
     String shortUrl = urlShortnerFactory.getShortenedUrl(originalUrl);
+    // assertNotNull(shortUrl);
     verify(urlShortnerService, times(1)).getShortenedUrl(any(String.class));
-
-    assertNotNull(shortUrl);
   }
 
-  // @Test
-  // public void fetchOriginalUrlTest() throws UrlShortnerServiceException {
-  // String originalUrlFromMock = urlShortnerFactory.getOriginalUrl(shortUrl).getOriginalUrl();
-  // assertEquals(originalUrlFromMock, originalUrl);
-  // verify(urlShortnerService, times(1)).getOriginalUrl(any(String.class));
-  // }
+
+  @Test
+  public void fetchOriginalUrlTest() throws UrlShortnerServiceException {
+    String originalUrl = "https://news.google.com/topstories";
+    urlShortnerFactory.getOriginalUrl("b");
+    // assertEquals(originalUrlFromMock, originalUrl);
+    verify(urlShortnerService, times(1)).getOriginalUrl(any(String.class));
+  }
+
 
 }

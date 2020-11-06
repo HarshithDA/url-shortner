@@ -29,10 +29,10 @@ public class UrlShortnerJpaConfig {
   @Bean
   public DataSource dataSource() {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
-    dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-    dataSource.setUrl(env.getProperty("jdbc.url"));
-    dataSource.setUsername(env.getProperty("jdbc.user"));
-    dataSource.setPassword(env.getProperty("jdbc.pass"));
+    dataSource.setDriverClassName(env.getProperty("test.jdbc.driverClassName"));
+    dataSource.setUrl(env.getProperty("test.jdbc.url"));
+    dataSource.setUsername(env.getProperty("test.jdbc.user"));
+    dataSource.setPassword(env.getProperty("test.jdbc.pass"));
 
     return dataSource;
   }
