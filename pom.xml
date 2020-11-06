@@ -104,12 +104,6 @@
 		</dependency> 
 		
 		
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency> -->
-		
-		
 		<dependency>
 		    <groupId>javax.ws.rs</groupId>
 		    <artifactId>javax.ws.rs-api</artifactId>
@@ -120,6 +114,7 @@
 		    <groupId>org.glassfish.jersey.core</groupId>
 		    <artifactId>jersey-common</artifactId>
 		</dependency>
+		
 		
 		<dependency>
 		    <groupId>org.springframework</groupId>
@@ -143,18 +138,6 @@
 		  <artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
 		
-		
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency> -->
 		
 	</dependencies>
 
